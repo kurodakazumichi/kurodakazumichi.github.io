@@ -1,0 +1,1 @@
+# kurodakazumichi.github.io
