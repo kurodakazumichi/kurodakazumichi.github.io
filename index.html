@@ -3,12 +3,231 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>無職の学び舎 By Nekonecode</title>
+  <title>Nekonecode</title>
+  <meta name=”description” content="プログラミングや数学に関する情報を発信してるよ。YouTubeもあるよ。フリーランスという名の無職だよ。">
+
+  <style>
+  /*
+  html5doctor.com Reset Stylesheet
+  v1.6.1
+  Last Updated: 2010-09-17
+  Author: Richard Clark - http://richclarkdesign.com
+  Twitter: @rich_clark
+  */
+
+  html, body, div, span, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  abbr, address, cite, code,
+  del, dfn, em, img, ins, kbd, q, samp,
+  small, strong, sub, sup, var,
+  b, i,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, figcaption, figure,
+  footer, header, hgroup, menu, nav, section, summary,
+  time, mark, audio, video {
+      margin:0;
+      padding:0;
+      border:0;
+      outline:0;
+      font-size:100%;
+      vertical-align:baseline;
+      background:transparent;
+  }
+
+  body {
+      line-height:1;
+  }
+
+  article,aside,details,figcaption,figure,
+  footer,header,hgroup,menu,nav,section {
+      display:block;
+  }
+
+  nav ul {
+      list-style:none;
+  }
+
+  blockquote, q {
+      quotes:none;
+  }
+
+  blockquote:before, blockquote:after,
+  q:before, q:after {
+      content:'';
+      content:none;
+  }
+
+  a {
+      margin:0;
+      padding:0;
+      font-size:100%;
+      vertical-align:baseline;
+      background:transparent;
+  }
+
+  /* change colours to suit your needs */
+  ins {
+      background-color:#ff9;
+      color:#000;
+      text-decoration:none;
+  }
+
+  /* change colours to suit your needs */
+  mark {
+      background-color:#ff9;
+      color:#000;
+      font-style:italic;
+      font-weight:bold;
+  }
+
+  del {
+      text-decoration: line-through;
+  }
+
+  abbr[title], dfn[title] {
+      border-bottom:1px dotted;
+      cursor:help;
+  }
+
+  table {
+      border-collapse:collapse;
+      border-spacing:0;
+  }
+
+  /* change border colour to suit your needs */
+  hr {
+      display:block;
+      height:1px;
+      border:0;  
+      border-top:1px solid #cccccc;
+      margin:1em 0;
+      padding:0;
+  }
+
+  input, select {
+      vertical-align:middle;
+  }
+  </style>
+  <style>
+    body {
+      height: calc(100vh * 7);
+      color:#393939;
+
+      font-size: calc(2vw);
+    }
+    section {
+      position: fixed;
+      width:100%;
+      height:100vh;
+    }
+
+    section.nnc {
+      z-index:5;
+      
+      background:linear-gradient(90deg,  #008F7E, #009F8C, #5DB9AE) ;
+    }
+    section.youtube {
+      z-index:4;
+      background:linear-gradient(90deg, #44A5CB, #1F91BE 20%, #007FB1);
+    }
+    section.math {
+      z-index:3;
+      background:linear-gradient(#5D639E, #7379AE 80%, #8B90BE);
+    }
+    section.stepcode {
+      z-index:2;
+      background: linear-gradient(#BE5378, #CA3C6E, #BF1E56);
+    }
+    section.profile {
+      z-index:1;
+      background: #393939;
+      color:white;
+    }
+
+    h1, h2 {
+      position: absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      font-size: 3em;
+      filter: drop-shadow(3px 3px 4px #aaa);
+    }
+    p {
+      text-align: center;
+      margin-top:60vh;
+      font-size: 1.5em;
+      color:white;
+      font-family: "Hiragino Maru Gothic ProN";
+    }
+
+    a {
+      position: relative;
+      text-decoration: none;
+      color:white;
+    }
+
+    @keyframes anim-arrow {
+      0% {
+        padding-left: 0.5em;
+      }
+      100% {
+        padding-left: 0.8em;
+      }
+    }
+    .arrow {
+      position:absolute;
+      font-size: 0.8em;
+      top:50%;
+      transform: translate(0%, -50%);
+      -webkit-transform: translate(0%, -50%);
+      -ms-transform: translate(0%, -50%);
+      padding-left:0.5em;
+      animation:anim-arrow 2s ease;
+      animation-iteration-count: infinite;
+    }
+  </style>
 </head>
 <body>
-  <h1>無職のサイト</h1>
-  <a href="math2d/">数学ラボ</a>
-  <a href="https://kurodakazumichi.github.io/stepcode/">StepCode</a>
-  <a href="https://www.youtube.com/channel/UCZgEuo3mQ6uYpuZJcn38sxQ">YouTubeチャンネル</a>
+  <section class="nnc">
+    <h1>Nekonecode</h1>
+    <p>稼げてないフリーランス(無職)のサイト</p>
+  </section>
+  <section class="youtube">
+    <h2><a href="https://www.youtube.com/channel/UCZgEuo3mQ6uYpuZJcn38sxQ">YouTube<span class="arrow">▶︎</span></a></h2>
+    <p>プログラミングと無職の戯言</p>
+  </section>
+  <section class="math">
+    <h2><a href="math2d/">数学ラボ<span class="arrow">▶︎</span></a></h2>
+    <p>動かせる数学</p>
+  </section>
+  <section class="stepcode">
+    <h2><a href="stepcode/">StepCode<span class="arrow">▶︎</span></a></h2>
+    <p>ソースコードや数式のスライドが作れるツール</p>
+  </section>
+  <section class="profile">
+    <h2>Profile</h2>
+    <p>178cm 87kg</p>
+  </section>  
+
+  <script>
+    const sections = document.getElementsByTagName("section");
+    const threshold = 7 / 5;
+
+    const onScroll = (e) => {
+      const rate = scrollY / innerHeight;
+      sections[0].style.left =  (innerWidth  *  Math.max(0, Math.min(1, rate  - 0.1))) + "px";
+      sections[1].style.left = -(innerWidth  * (Math.max(0, rate - threshold))) + "px";
+      sections[2].style.top  =  (innerHeight * (Math.max(0, rate - threshold*2))) + "px";
+      sections[3].style.top  = -(innerHeight * (Math.max(0, rate - threshold*3))) + "px";
+    }
+    window.addEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll);
+  </script>
 </body>
 </html>
+
+
