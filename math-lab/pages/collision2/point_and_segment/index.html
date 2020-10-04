@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>点と線分の衝突 | Nekonecode</title>
+    <script src="../../../assets/js/props.js"></script>
+    <script src="../../../assets/js/mathLab.js"></script>
+    <link rel="stylesheet" href="../../../assets/css/default.css">
+
+    
+    <script src="../../../venders/somali/somali.js"></script>
+    <script src="../../../venders/highlight/highlight.pack.js"></script>
+    <link rel="stylesheet" href="../../../venders/highlight/atom-one-dark.css">
+
+    <script>
+      MathJax = {
+        chtml: {
+          matchFontHeight: false
+        },
+        tex: {
+          inlineMath: [['$', '$']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>    
+  </head>
+  <body>
+    <header>
+      <a href="../../../index.html">目次</a>
+    </header>
+    <main>
+      <article>
+        <h1>点と線分の衝突</h1>
+        <div id="graph1"></div>
+
+<p>
+  点と線分の当たり判定は、点と半直線と似ていてベクトルの<b>内積</b>を使って当たりを判定する。
+</p>
+<p>
+  ただ、線分には長さがあるので内積だけでは判定できず、もうひと手間必要になる。
+</p>
+
+<div id="graph2"></div>
+
+<p>
+  相変わらずだが、点と線というボリュームを持たない形状はほとんど当たることが無い。
+</p>
+      </article>
+    </main>
+
+    <footer>
+      <span>無職の学び舎 | Nekonecode</span>
+    </footer>
+    
+    <script src="main.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
