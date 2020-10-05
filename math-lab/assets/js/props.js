@@ -15,7 +15,7 @@ props.Sync = {
   },
 
   /** Vectir2をSomali.Arrowへ適用 */
-  vec2ToArrow: (v, shape) => {
+  vecToArrow: (v, shape) => {
     return shape.points([0, 0, v.x, v.y]);
   },
 
@@ -47,12 +47,20 @@ props.Sync = {
 
   /** CapsuleをSomali.Lineへ適用 */
   capsuleToLine: (capsule, shape) => {
-    console.log(capsule);
     return shape
       .points(capsule.s.points)
       .strokeWidth(capsule.r * 2, true)
       .lineCap("round");
-  }
+  },
+
+  /** EllipseをSomali.Ellipseへ適用 */
+  ellipseToEllipse:(ellipse, shape) => {
+    return shape
+      .pos(ellipse.p.x, ellipse.p.y)
+      .rx(ellipse.rx)
+      .ry(ellipse.ry)
+      .rotation(-ellipse.angle);    
+  },
 
 };
 
