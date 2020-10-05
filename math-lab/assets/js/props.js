@@ -14,23 +14,28 @@ props.Sync = {
     return shape.points(line.points(100));
   },
 
-  /** Vectir2をSomali.Arrowへ適用 */
+  /** Vector2をSomali.Arrowへ適用 */
   vecToArrow: (v, shape) => {
     return shape.points([0, 0, v.x, v.y]);
   },
 
+  /** Vector2のポジションを同期 */
+  vecToPos: (v, shape) => {
+    return shape.pos(v.x, v.y);
+  },
+
   /** CircleをSomali.Circleへ適用 */
-  circle2Circle: (circle, shape) => {
+  circleToCircle: (circle, shape) => {
     return shape.pos(circle.p.x, circle.p.y).radius(circle.r);
   },
 
   /** RectをSomali.Rectへ適用 */
-  rect2Rect: (rect, shape) => {
+  rectToRect: (rect, shape) => {
     return shape.pos(rect.p1.x, rect.p1.y).width(rect.w).height(rect.h);
   },
 
   /** BoxをSomali.Rectへ適用 */
-  box2Rect: (box, shape) => {
+  boxToRect: (box, shape) => {
     return shape
       .pos(box.c.x, box.c.y)
       .width(box.w)
@@ -116,4 +121,46 @@ props.Action.uniform = class
   updateNode() {
     this.node.pos(this.pos.x, this.pos.y);
   }
+}
+
+/******************************************************************************
+ * Graphプリセット
+ *****************************************************************************/
+props.Graph = {}
+
+props.Graph.Cos = class extends Somali.Scene{
+
+  constructor(id = "graph_cos") {
+    super();
+    this.id = id;
+  }
+
+  get option() {
+    return {id:this.id, height: 200, width: 700, unit: 70, update:false}
+  }
+
+  createNodes(shapes, groups) {
+    return {
+      grid  : groups.grid().labelX("θ").labelY("cos"),
+      cos   : groups.cos(),
+    }
+  }  
+}
+
+props.Graph.Sin = class extends Somali.Scene {
+  constructor(id = "graph_sin") {
+    super();
+    this.id = id;
+  }
+
+  get option() {
+    return {id:this.id, height: 200, width: 700, unit: 70, update:false}
+  }
+
+  createNodes(shapes, groups) {
+    return {
+      grid  : groups.grid().labelX("θ").labelY("sin"),
+      cos   : groups.sin(),
+    }
+  }  
 }
