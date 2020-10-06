@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>点と直線の衝突 | Nekonecode</title>
+    <title>点と直線の衝突 | 無職の学び舎 </title>
+
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="点と直線の衝突" />
+    <meta property="og:site_name" content="無職は数学の勉強をする | 無職の学び舎" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@ProgPuyan" />
+    
     <script src="../../../assets/js/mathLab.js"></script>
     <link rel="stylesheet" href="../../../assets/css/default.css">
 
@@ -108,6 +116,31 @@
   <li>ベクトルが平行になるというのは、点が直線の上にあるという事である。</li>
   <li>よって、ベクトルの外積が0の時、点と直線は衝突している。</li>
 </ol>
+
+<h2>サンプルコード</h2>
+<pre><code>/**
+* 点と直線の衝突判定
+* @param p 点
+* @param line 直線
+*/
+function intercect(p:Vector2, line:Line)
+{
+  // 直線の方向を表すベクトルをaとする
+  const a = line.v;
+
+  // 直線上の1点からpに向かうベクトルをbとする(ベクトルの引き算で算出)
+  const b = Vector2.sub(p, line.p);
+
+  // aとbの外積を取る
+  const cross = Vector2.cross(a, b);
+
+  // 外積が0だったら当たっている
+  return (cross === 0);
+}</code></pre>
+
+<p>
+  外積が0と完全一致することは小数点誤差などもありほぼ起こりえない問題はありますが、外積の値が-0.01 ～ 0.01だったらのように判定に少し遊びを持たせると当たりやすくなります。
+</p>
 
 <h2>余談：$y=ax+b$の直線の式で判定できるか？</h2>
 

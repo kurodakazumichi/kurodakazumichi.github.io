@@ -343,6 +343,15 @@ article {
       height: 3px;
       margin-top: 5px;
       background: linear-gradient(to right, #fff 0%, #43C6AC 50%, #fff 100%); }
+  article h3 {
+    font-size: 22px;
+    margin-bottom: 0.2em; }
+    article h3::after {
+      content: "";
+      display: block;
+      height: 2px;
+      margin-top: 5px;
+      background: linear-gradient(to right, #eee 50%, #fff 100%); }
   article .index {
     display: flex;
     flex-wrap: wrap;

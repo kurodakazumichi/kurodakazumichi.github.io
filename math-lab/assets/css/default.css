@@ -346,15 +346,17 @@ article {
       height: 5px;
       margin-top: 5px;
       background: linear-gradient(to right, #fff 0%, #43C6AC 50%, #fff 100%); }
+  article h3 {
+    margin-top: 2em; }
   article p {
     line-height: 1.5em;
     margin-bottom: 2.5em; }
   article b {
-    color: #43C6AC; }
+    color: #4469A6; }
   article a {
     text-decoration: none;
     font-weight: bold;
-    color: #4469A6; }
+    color: #43C6AC; }
   article code {
     background: #eee;
     border: 1px solid #ddd;
@@ -370,8 +372,6 @@ article {
     margin-bottom: 0.5em; }
   article ul {
     padding-left: 1em; }
-    article ul li:not([class]) {
-      list-style-type: circle; }
   article figure table {
     font-size: 30px;
     border-collapse: collapse; }
