@@ -36,7 +36,23 @@
   </head>
   <body>
     <header>
-      <a href="../../../index.html">目次</a>
+      <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a itemprop="item" href="https://www.nekonecode.com">
+            <span itemprop="name">無職の学び舎</span>
+          </a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <li>&gt;</li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a itemprop="item" href="../../../index.html">
+            <span itemprop="name">無職は数学の勉強をする</span>
+          </a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <li>&gt;</li>
+        <li>点と半直線の最近傍点</li>
+      </ol>      
     </header>
     <main>
       <article>
@@ -94,6 +110,9 @@
 
 <p>この時、 $\vec{v}$ と $\vec{b}$ の内積をとって、内積の値がプラスだったら $点B$ は 青い領域にあり、マイナスだったら赤い領域にあります。</p>
 
+<p>
+  内積の値がプラスかマイナスかでそんなことがわかるの？と気になる方は<a href="../../vector2/dot2">ベクトルの内積の特性</a>をご参照ください。
+</p>
 <p>まとめると</p>
 <p class="math">
   $ \vec{v} \cdot \vec{b} &lt;= 0$ の時、最近傍点は $点A$ である。<br>
@@ -118,13 +137,13 @@
    const b = Vector2.sub(p, ray.p);
  
    // v と b の 内積がマイナス = 半直線の反対側に点がある = 半直線の始点が最近傍点
-   if (Vector2.dot(d, p) <= 0) {
+   if (Vector2.dot(v, b) <= 0) {
      return ray.p;
    }
  
    // 内積がプラス = 点と直線の最近傍点を求める
    const n = v.normalize;
-   const dot = Vector2.dot(n, p);
+   const dot = Vector2.dot(n, b);
    return Vector2.add(ray.p, n.times(dot));
  }</code></pre>
       </article>

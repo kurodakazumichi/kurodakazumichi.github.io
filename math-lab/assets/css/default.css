@@ -311,10 +311,18 @@ body {
 
 header {
   background: #393939;
-  padding: 0.2em; }
+  padding: 0.2em 0.4em;
+  color: white; }
+  header ol {
+    margin: 0;
+    padding: 0; }
+    header ol li {
+      display: inline;
+      list-style: none;
+      font-size: 21px; }
   header a {
-    text-decoration: none;
-    color: white; }
+    color: #fefefe;
+    text-decoration: none; }
 
 footer {
   background: #393939;
