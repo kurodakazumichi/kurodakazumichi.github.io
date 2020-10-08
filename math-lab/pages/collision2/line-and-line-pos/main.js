@@ -78,9 +78,11 @@
         l1: shapes.line(),
         l2: shapes.line(),
 
-        A: shapes.text("A"),
-        B: shapes.text("B"),
-        P: shapes.text("P"),
+        A    : shapes.point().radius(0.1),
+        AText: shapes.text("A"),
+        B    : shapes.point().radius(0.1),
+        BText: shapes.text("B"),
+        PText: shapes.text("P"),
 
         v1: shapes.arrow().color(sColor.red).strokeWidth(7),
         v1Text: shapes.text("v1"),
@@ -105,8 +107,10 @@
       Sync.lineToLine(this.l2, nodes.l2);
 
       Sync.vecToPos(this.l1.p, nodes.A);
-      Sync.vecToPos(this.l2.p, nodes.B).offset(0, 0.5);
-      Sync.vecToPos(this.collision.pos, nodes.P);
+      Sync.vecToPos(this.l1.p, nodes.AText);
+      Sync.vecToPos(this.l2.p, nodes.B);
+      Sync.vecToPos(this.l2.p, nodes.BText).offset(0, 0.5);
+      Sync.vecToPos(this.collision.pos, nodes.PText);
 
       this.initNode_v1(nodes);
       this.initNode_v2(nodes);
@@ -151,6 +155,12 @@
       nodes.tv2.points([a.x, a.y, b.x, b.y]);
       nodes.tv2Text.pos(b.x, b.y).offset(-1.5, 0.8);
     }
+
+    visible(list, flag) {
+      list.map((key) => {
+        this.nodes[key].visible(flag);
+      })
+    }
   }
 
   graphs.Graph2_1 = class extends Graph2Base 
@@ -161,9 +171,145 @@
 
     initNodes(nodes) {
       super.initNodes(nodes);
+
+      this.visible([
+        "v1",
+        "v1Text",
+        "v2",
+        "v2Text",
+        "v",
+        "vText",
+        "v1d",
+        "v1dText",
+        "tv2",
+        "tv2Text",        
+      ], false);
     }
 
   }
+
+  graphs.Graph2_2 = class extends Graph2Base 
+  {
+    get option() {
+      return { id: "graph2_2" }
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+
+      this.visible([
+        "v1d",
+        "v1dText",
+        "tv2",
+        "tv2Text",        
+      ], false);      
+    }
+
+  }  
+
+  graphs.Graph2_3_1 = class extends Graph2Base 
+  {
+    get option() {
+      return { id: "graph2_3_1" }
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+
+      this.visible([
+        "v1",
+        "v1Text",
+        "v2",
+        "v2Text",        
+        "v",
+        "vText",
+        "tv2",
+        "tv2Text",        
+      ], false);           
+    }
+
+  }  
+
+  graphs.Graph2_3_2 = class extends Graph2Base 
+  {
+    get option() {
+      return { id: "graph2_3_2" }
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+
+      this.visible([
+        "v1",
+        "v1Text",
+        "v",
+        "vText",
+        "v1d",
+        "v1dText",
+      ], false);           
+    }
+
+  }    
+
+  graphs.Graph2_4 = class extends Graph2Base 
+  {
+    get option() {
+      return { id: "graph2_4" }
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+
+
+      this.visible([
+        "v1",
+        "v1Text",
+      ], false);                
+    }
+
+  }  
+
+  graphs.Graph2_5 = class extends Graph2Base 
+  {
+    get option() {
+      return { id: "graph2_5" }
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+
+      this.visible([
+        "v1",
+        "v1Text",
+        "v",
+        "vText",
+        "v1d",
+        "v1dText",
+      ], false);             
+    }
+
+  }  
+
+  graphs.Graph2_6 = class extends Graph2Base 
+  {
+    get option() {
+      return { id: "graph2_6" }
+    }
+
+    initNodes(nodes) {
+      super.initNodes(nodes);
+
+      this.visible([
+        "v",
+        "vText",
+        "v2",
+        "v2Text",
+        "tv2",
+        "tv2Text",
+      ], false);          
+    }
+
+  }    
 
   Object.values(graphs).map((graph) => {
     new graph().build();

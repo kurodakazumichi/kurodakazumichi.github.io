@@ -378,6 +378,8 @@ article {
   article li:not([class]) {
     line-height: 1.5em;
     margin-bottom: 0.5em; }
+  article li:last-child {
+    margin-bottom: 0; }
   article ul {
     padding-left: 1em; }
   article figure table {
@@ -395,6 +397,9 @@ article {
   border-radius: 10px;
   background: #f6fcf5;
   line-height: 2.5em; }
+
+ul.math {
+  padding-left: 2em; }
 
 .somali {
   display: flex;
