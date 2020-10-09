@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>三平方の定理 | 無職の学び舎 </title>
+
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="三平方の定理" />
+    <meta property="og:site_name" content="無職はゲーム数学の勉強をする | 無職の学び舎" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@ProgPuyan" />
+    
+    <script src="../../../assets/js/mathLab.js"></script>
+    <link rel="stylesheet" href="../../../assets/css/default.css">
+
+    
+    <script src="../../../venders/somali/somali.js"></script>
+    <script src="../../../venders/highlight/highlight.pack.js"></script>
+    <link rel="stylesheet" href="../../../venders/highlight/atom-one-dark.css">
+
+    <script>
+      MathJax = {
+        chtml: {
+          matchFontHeight: false
+        },
+        tex: {
+          inlineMath: [['$', '$']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>    
+
+    <script src="../../../assets/js/props.js"></script>
+  </head>
+  <body>
+    <header>
+      <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a itemprop="item" href="https://www.nekonecode.com">
+            <span itemprop="name">無職の学び舎</span>
+          </a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <li>&gt;</li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a itemprop="item" href="../../../index.html">
+            <span itemprop="name">無職はゲーム数学の勉強をする</span>
+          </a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <li>&gt;</li>
+        <li>三平方の定理</li>
+      </ol>      
+    </header>
+    <main>
+      <article>
+        <h1>三平方の定理</h1>
+        
+<div id="graph1"></div>
+
+<p class="math">
+  $c^2 = a^2 + b^2$
+</p>
+
+<p>
+  三平方の定理(ピタゴラスの定理)はベクトルの長さを求めるという用途でめちゃくちゃよく使う。
+</p>
+
+<p>
+  2Dベクトルは基本的に$x$, $y$成分を持っているので、三平方の定理を使えば必ず長さが求められる。
+</p>
+
+<h2>証明</h2>
+
+<div id="graph2"></div>
+
+<p>
+  $c^2$ は 外側の大きい四角から、三角形４つを引いた面積になるはずなので以下の式が成り立てばいい。
+</p>
+
+<p class="math">
+  $c^2 = (a + b)^2 - 4(\frac{ab}{2})$<br>
+  $ \ \ \ = a^2 + 2ab + b^2 - 2ab$<br>
+  $ \ \ \ = a^2 + b^2$
+</p>
+      </article>
+    </main>
+
+    <footer>
+      <span>無職の学び舎 | Nekonecode</span>
+    </footer>
+    
+    <script src="main.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
