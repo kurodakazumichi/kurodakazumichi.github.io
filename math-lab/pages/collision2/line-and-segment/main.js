@@ -40,8 +40,8 @@
     }
 
     update() {
-      Sync.lineToLine(this.line, this.nodes.line);
-      Sync.segToLine(this.seg, this.nodes.seg);
+      Sync.lineByLine(this.nodes.line, this.line);
+      Sync.lineBySeg(this.nodes.seg, this.seg);
 
       const result = Collision2.LineAndSegment.intercect(this.line, this.seg);
       
@@ -84,8 +84,8 @@
     }
 
     initNodes(nodes) {
-      Sync.lineToLine(this.line, nodes.line);
-      Sync.segToLine(this.seg, nodes.seg);
+      Sync.lineByLine(nodes.line, this.line);
+      Sync.lineBySeg(nodes.seg, this.seg);
     }
   }  
 
@@ -129,14 +129,14 @@
 
     initNodes(nodes) 
     {
-      Sync.lineToLine(this.l1, nodes.l1);
-      Sync.segToLine(this.seg, nodes.seg);
+      Sync.lineByLine(nodes.l1, this.l1);
+      Sync.lineBySeg(nodes.seg, this.seg);
 
-      Sync.vecToPos(this.l1.p, nodes.A);
-      Sync.vecToPos(this.l1.p, nodes.AText);
-      Sync.vecToPos(this.l2.p, nodes.B);
-      Sync.vecToPos(this.l2.p, nodes.BText).offset(0, 0.5);
-      Sync.vecToPos(this.collision.pos, nodes.PText);
+      Sync.posByVec(nodes.A    , this.l1.p);
+      Sync.posByVec(nodes.AText, this.l1.p);
+      Sync.posByVec(nodes.B    , this.l2.p);
+      Sync.posByVec(nodes.BText, this.l2.p).offset(0, 0.5);
+      Sync.posByVec(nodes.PText, this.collision.pos);
 
       this.initNode_v1(nodes);
       this.initNode_v2(nodes);

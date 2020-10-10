@@ -23,7 +23,7 @@
       return {
         grid: groups.grid(),
         point: shapes.point(),
-        box  : Sync.boxToRect(this.box, shapes.rect()),
+        box  : Sync.rectByBox(shapes.rect(), this.box),
         star: shapes.star().opacity(0.5)
       }
     }
@@ -68,8 +68,8 @@
     }
 
     initNodes(nodes) {
-      Sync.boxToRect(this.box, nodes.box);
-      Sync.vecToPos(this.pos, nodes.p);
+      Sync.rectByBox(nodes.box, this.box);
+      Sync.posByVec(nodes.p, this.pos);
     }
 
     initNode_line(line, s, e) {
@@ -186,9 +186,9 @@
     }
 
     initNodes(nodes) {
-      Sync.boxToRect(this.box, nodes.box);
-      Sync.vecToPos(this.pos, nodes.p);
-      Sync.vecToPos(this.pos, nodes.P);
+      Sync.rectByBox(nodes.box, this.box);
+      Sync.posByVec(nodes.p, this.pos);
+      Sync.posByVec(nodes.P, this.pos);
 
       this.initNode_line(nodes.v12, this.box.p1, this.box.p2);
       this.initNode_line(nodes.v23, this.box.p2, this.box.p3);
@@ -197,10 +197,10 @@
 
       this.initNode_line(nodes.toP, this.box.p1, this.pos);
 
-      Sync.vecToPos(this.box.p1, nodes.p1).offset(-0.5, 0.5);
-      Sync.vecToPos(this.box.p2, nodes.p2).offset(0, 0.5);;
-      Sync.vecToPos(this.box.p3, nodes.p3);
-      Sync.vecToPos(this.box.p4, nodes.p4);
+      Sync.posByVec(nodes.p1, this.box.p1).offset(-0.5, 0.5);
+      Sync.posByVec(nodes.p2, this.box.p2).offset(0, 0.5);;
+      Sync.posByVec(nodes.p3, this.box.p3);
+      Sync.posByVec(nodes.p4, this.box.p4);
     }
 
     initNode_line(line, s, e) {

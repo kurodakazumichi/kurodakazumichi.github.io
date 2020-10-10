@@ -24,7 +24,7 @@
         grid: groups.grid(),
         point: shapes.point(),
         star: shapes.star().opacity(0.5),
-        ellipse: Sync.ellipseToEllipse(this.ellipse, shapes.ellipse()),
+        ellipse: Sync.ellipseByEllipse(shapes.ellipse(), this.ellipse),
       }
     }
 
@@ -58,7 +58,7 @@
         point: shapes.point().pos(this.pos.x, this.pos.y),
 
         center: shapes.point().pos(this.ellipse.p.x, this.ellipse.p.y).fill(sColor.main),
-        ellipse: Sync.ellipseToEllipse(this.ellipse, shapes.ellipse()),
+        ellipse: Sync.ellipseByEllipse(shapes.ellipse(), this.ellipse),
 
         arrow: shapes.arrow().strokeWidth(1).dash(5),
       }
@@ -89,7 +89,7 @@
       this.phase = "transform";
       this.pos.set(1, 2);
       this.ellipse.p.set(1, 1);      
-      Sync.ellipseToEllipse(this.ellipse, this.nodes.ellipse);
+      Sync.ellipseByEllipse(this.nodes.ellipse, this.ellipse);
     }
 
     transformUpdate() {
@@ -97,11 +97,11 @@
 
       if (this.timer < 1.0) {
         const to1 = Vector2.lerp(this.ellipse.p, Vector2.zero, this.timer);
-        Sync.vecToPos(to1, this.nodes.ellipse);
-        Sync.vecToPos(to1, this.nodes.center);
+        Sync.posByVec(this.nodes.ellipse, to1);
+        Sync.posByVec(this.nodes.center, to1);
 
         const to2 = Vector2.lerp(this.pos, new Vector2(0, 1), this.timer);
-        Sync.vecToPos(to2, this.nodes.point); 
+        Sync.posByVec(this.nodes.point, to2); 
       }
 
       if (2.0 < this.timer) {
@@ -126,7 +126,7 @@
         this.nodes.ellipse.rotation(to);
 
         const to2 = Vector2.up.rotate(Util.deg2rad(-this.ellipse.angle - to));
-        Sync.vecToPos(to2, this.nodes.point); 
+        Sync.posByVec(this.nodes.point, to2); 
       }
 
       if (2.0 < this.timer) {
@@ -183,7 +183,7 @@
       return {
         grid: groups.grid(),
         
-        ellipse: Sync.ellipseToEllipse(this.ellipse, shapes.ellipse()),
+        ellipse: Sync.ellipseByEllipse(shapes.ellipse(), this.ellipse),
 
         p: shapes.point().pos(1, 2),
         pText: shapes.text().text("P").pos(1, 2),
@@ -216,12 +216,10 @@
 
     createNodes(shapes, groups) {
 
-      const v50 = Vector2.right.times(3).rotate(Util.deg2rad(50));
-      const v100 = Vector2.right.times(2).rotate(Util.deg2rad(140));
       return {
         grid: groups.grid(),
         
-        ellipse: Sync.ellipseToEllipse(this.ellipse, shapes.ellipse()),
+        ellipse: Sync.ellipseByEllipse(shapes.ellipse(), this.ellipse),
 
         p: shapes.point().pos(0.8, 1),
         pText: shapes.text().text("P'").pos(0.8, 1),

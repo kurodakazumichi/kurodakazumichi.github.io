@@ -40,8 +40,8 @@
     }
 
     update() {
-      Sync.lineToLine(this.line, this.nodes.line);
-      Sync.rayToLine(this.ray, this.nodes.ray);
+      Sync.lineByLine(this.nodes.line, this.line);
+      Sync.lineByRay(this.nodes.ray, this.ray);
 
       const result = Collision2.LineAndRay.intercect(this.line, this.ray);
       
@@ -84,8 +84,8 @@
     }
 
     initNodes(nodes) {
-      Sync.lineToLine(this.line, nodes.line);
-      Sync.rayToLine(this.ray, nodes.ray);
+      Sync.lineByLine(nodes.line, this.line);
+      Sync.lineByRay(nodes.ray, this.ray);
     }
   }  
 
@@ -128,20 +128,18 @@
 
     initNodes(nodes) 
     {
-      Sync.lineToLine(this.l1, nodes.l1);
-      Sync.rayToLine(this.ray, nodes.l2);
+      Sync.lineByLine(nodes.l1, this.l1);
+      Sync.lineByRay(nodes.l2, this.ray);
 
-      Sync.vecToPos(this.l1.p, nodes.A);
-      Sync.vecToPos(this.l1.p, nodes.AText);
-      Sync.vecToPos(this.l2.p, nodes.B);
-      Sync.vecToPos(this.l2.p, nodes.BText).offset(0, 0.5);
-      Sync.vecToPos(this.collision.pos, nodes.PText);
+      Sync.posByVec(nodes.A    , this.l1.p);
+      Sync.posByVec(nodes.AText, this.l1.p);
+      Sync.posByVec(nodes.B    , this.l2.p);
+      Sync.posByVec(nodes.BText, this.l2.p).offset(0, 0.5);
+      Sync.posByVec(nodes.PText, this.collision.pos);
 
       this.initNode_v1(nodes);
       this.initNode_v2(nodes);
-
       this.initNode_v(nodes);
-
       this.initNode_tv2(nodes);
     }
 

@@ -28,7 +28,7 @@
     }
 
     initNodes(nodes) {
-      Sync.triToLine(this.tri, nodes.tri);
+      Sync.lineByTri(nodes.tri, this.tri);
       nodes.a.pos(0, -2);
       nodes.b.pos(3.2, 0.3);
       nodes.c.pos(-1, 1);
@@ -65,7 +65,7 @@
     }
 
     initNodes(nodes) {
-      Sync.rectToRect(this.rect, nodes.rect);
+      Sync.rectByRect(nodes.rect, this.rect);
 
       nodes.cc.points([-3, 1, 1, 3, 3, -1, -1, -3]);
       nodes.a.pos(1, -3);

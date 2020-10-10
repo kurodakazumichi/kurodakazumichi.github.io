@@ -27,7 +27,7 @@
     }
 
     update() {
-      Sync.vecToPos(this.shape, this.nodes.main);
+      Sync.posByVec(this.nodes.main, this.shape);
     }
   } 
 
@@ -65,8 +65,8 @@
 
     update() {
       this.nodes.line.points(this.line.points(100));
-      Sync.vecToPos(this.line.p, this.nodes.point);
-      Sync.vecToArrow(this.line.v, this.nodes.arrow);
+      Sync.posByVec(this.nodes.point, this.line.p);
+      Sync.arrowByVec(this.nodes.arrow, this.line.v);
     }
   }
 
@@ -104,8 +104,8 @@
 
     update() {
       this.nodes.line.points(this.ray.points(100));
-      Sync.vecToPos(this.ray.p, this.nodes.point);
-      Sync.vecToArrow(this.ray.v, this.nodes.arrow);
+      Sync.posByVec(this.nodes.point, this.ray.p);
+      Sync.arrowByVec(this.nodes.arrow, this.ray.v);
     }
   }
 
@@ -143,8 +143,8 @@
 
     update() {
       this.nodes.line.points(this.seg.points);
-      Sync.vecToPos(this.seg.p1, this.nodes.point);
-      Sync.vecToArrow(this.seg.v, this.nodes.arrow);
+      Sync.posByVec(this.nodes.point, this.seg.p1);
+      Sync.arrowByVec(this.nodes.arrow, this.seg.v);
     }
   }  
 
@@ -179,8 +179,8 @@
     }
 
     update() {
-      Sync.circleToCircle(this.circle, this.nodes.circle);
-      Sync.vecToPos(this.circle.p, this.nodes.point);
+      Sync.circleByCircle(this.nodes.circle, this.circle);
+      Sync.posByVec(this.nodes.point, this.circle.p);
     }
   }  
 
@@ -219,8 +219,8 @@
     }
 
     update() {
-      Sync.ellipseToEllipse(this.shape, this.nodes.main);
-      Sync.vecToPos(this.shape.p, this.nodes.point);
+      Sync.ellipseByEllipse(this.nodes.main, this.shape);
+      Sync.posByVec(this.nodes.point, this.shape.p);
     }
   }    
 
@@ -257,8 +257,8 @@
     }
 
     update() {
-      Sync.rectToRect(this.shape, this.nodes.main);
-      Sync.vecToPos(this.shape.p, this.nodes.point);
+      Sync.rectByRect(this.nodes.main, this.shape);
+      Sync.posByVec(this.nodes.point, this.shape.p);
     }
   }    
 
@@ -297,8 +297,8 @@
     }
 
     update() {
-      Sync.boxToRect(this.shape, this.nodes.main);
-      Sync.vecToPos(this.shape.p, this.nodes.point);
+      Sync.rectByBox(this.nodes.main, this.shape);
+      Sync.posByVec(this.nodes.point, this.shape.p);
     }
   } 
 
@@ -337,7 +337,7 @@
     }
 
     update() {
-      Sync.triToLine(this.shape, this.nodes.main);
+      Sync.lineByTri(this.nodes.main, this.shape);
     }
   } 
 
@@ -380,8 +380,8 @@
 
     update() {
       const { p1, p2 } = this.shape.s;
-      Sync.capsuleToLine(this.shape, this.nodes.main);
-      Sync.vecToPos(this.shape.s.p1, this.nodes.point);
+      Sync.lineByCapsule(this.nodes.main, this.shape);
+      Sync.posByVec(this.nodes.point, this.shape.s.p1);
 
       this.nodes.line.points([p1.x, p1.y, p2.x, p2.y]);
       this.nodes.c1.pos(p1.x, p1.y).radius(this.shape.r);
