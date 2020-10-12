@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>点と円の衝突 | 無職の学び舎 </title>
+    <title>直線と三角形の衝突 | 無職の学び舎 </title>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180265202-1"></script>
@@ -16,7 +16,7 @@
 
     <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="点と円の衝突" />
+    <meta property="og:title" content="直線と三角形の衝突" />
     <meta property="og:site_name" content="無職はゲーム数学の勉強をする | 無職の学び舎" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@ProgPuyan" />
@@ -62,89 +62,85 @@
           <meta itemprop="position" content="2" />
         </li>
         <li>&gt;</li>
-        <li>点と円の衝突</li>
+        <li>直線と三角形の衝突</li>
       </ol>      
     </header>
     <main>
       <article>
-        <h1>点と円の衝突</h1>
+        <h1>直線と三角形の衝突</h1>
         <div id="graph1"></div>
 
-<p>このページでは点と円の衝突について解説していきます。</p>
-
-<p>円のあたり判定は、判定も簡単で比較的処理も軽いので最もよく使われる判定方法だと思います。</p>
-
-<h2>考え方</h2>
-
-<div id="graph2"></div>
-
-<p class="math">
-  $点A$：円の中心<br>
-  $r$：円の半径
+<p>
+  ここでは直線と三角形の衝突についてまとめていきます。
 </p>
 
 <p>
-  <span class="green">●</span>を動かしてみて下さい。
+  といきたいところなのですが、この直線と三角形の衝突判定は<a href="../line-and-rect/">直線と矩形の衝突</a>とほぼ同じ方法で判定できてしまいます。
 </p>
 
 <p>
-  緑の線について、$点P$ が円の外にあるときは 円の半径 $r$ よりも長くなり、円の中にあるときは $r$ よりも短くなる事がわかると思います。
+  矩形の場合は、<b>矩形の角4点全てが</b>直線の右側にあるか、左側にあるかを判定しました。
 </p>
 
 <p>
-  なので、緑の線が円の半径$r$よりも短ければ、点と円は当たっているとなります。
+  三角形の場合は、<b>三角形の頂点3つ全てが</b>直線の右側にあるか、左側にあるかを判定します。
 </p>
-
-<p class="math">
-  緑の線を $\vec{AP}$ とすると<br>
-  $|\vec{AP}| &lt; r$ であれば、点と円が当たっている。
-</p>
-
-<h2>$\vec{AP}$ の長さを求める</h2>
 
 <p>
-  $\vec{AP}$ は $点P$ の座標から $点A$ の座標を引き算する事で求められます。
+  <b>調べる頂点の数が変わるだけ</b>で衝突判定の基本の考え方も、計算方法も同じになります。
 </p>
 
-<p class="math">
-  $\vec{AP} = P - A$
+<p>
+  ほぼ同じ記事を書くのもしんどいので、詳しい判定方法については<a href="../line-and-rect/">直線と矩形の衝突</a>の記事をご覧ください。
 </p>
-
-<p>そしてベクトルの長さは <a href="../../theorem/pythagorean/">三平方の定理</a>で求める事ができます。</p>
-
-<p class="math">
-  $\vec{AP} = (x, y)$ とすると
-  $|\vec{AP}| = \sqrt{x^2 + y^2}$
-</p>
-
-<h2>まとめ</h2>
-
-<p>円の半径 $r$ より $\vec{AP}$ の長さが短ければ $点P$ は円に当たっている。</p>
-
-<p class="math">
-  $|\vec{AP}| &lt; r$<br>
-  $ = \sqrt{x^2 + y^2} &lt; r$　　　：$|\vec{AP}| = \sqrt{x^2 + y^2}$ なので<br>
-  $ = x^2 + y^2 < r^2 \ \ \ $　　　：√を外す
-</p>
-
-<p>最後に√を外していますが、√を外さなくても計算上は問題ありません。</p>
-<p>ただコンピューターで平方根を求める処理は重い処理なので、両辺を二乗してルートを外すことで平方根の計算を無くすという方法がよく使われます。</p>
 
 <h2>サンプルコード</h2>
 
 <pre><code>/**
-  * 点と円が当たっているかどうか
-  * @param p 点
-  * @param circle 円
+  * 直線と三角形が当たっているかどうか
+  * @param line 直線
+  * @param triangle 三角形
   */
- function intercect(p:Vector2, circle: Circle)
+ export function isHit(line:Line, triangle:Triangle) 
  {
-   // 円の中心から p に向かうベクトルを v とする
-   const v = Vector2.sub(p, circle.p);
+   // 三角形の3頂点を配列化
+   const points = [
+     triangle.p1,
+     triangle.p2,
+     triangle.p3,
+   ];
  
-   // v が 円の半径より短ければあたっている。
-   // (ベクトルの長さの二乗で判定する事で処理負荷を下げる)
-   return (v.sqrMagnitude < circle.r * circle.r);
+   // 外積の符号を覚えておくための変数
+   let sign = 0;
+ 
+   // 角4点と直線の方向ベクトルの関係性を調べる
+   for(let i = 0; i < points.length; ++i) {
+ 
+     // 直線の向きベクトルを v1 とする
+     const v1 = line.v;
+ 
+     // 直線の任意の点から矩形の角に向かうベクトルをv2 とする
+     const v2 = Vector2.sub(points[i], line.p);
+ 
+     // 外積を取る
+     const cross = Vector2.cross(v1, v2);
+ 
+     // 外積の結果が0だったら衝突している
+     if (cross === 0) return true;
+ 
+     // 初回だけ外積の符号を記憶しておく
+     if (i == 0) {
+       sign = Math.sign(cross);
+     }
+ 
+     // 2点目以降、外積の符号が変わっていたら交差している
+     else {
+       if (sign !== Math.sign(cross)) return true;
+     }
+   }
+ 
+   // 外積の結果が全て同じ符号だったら衝突していない。
+   return false;  
  }</code></pre>
       </article>
     </main>

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>点と円の衝突 | 無職の学び舎 </title>
+    <title>矩形と矩形の衝突 | 無職の学び舎 </title>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180265202-1"></script>
@@ -16,7 +16,7 @@
 
     <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="点と円の衝突" />
+    <meta property="og:title" content="矩形と矩形の衝突" />
     <meta property="og:site_name" content="無職はゲーム数学の勉強をする | 無職の学び舎" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@ProgPuyan" />
@@ -62,89 +62,75 @@
           <meta itemprop="position" content="2" />
         </li>
         <li>&gt;</li>
-        <li>点と円の衝突</li>
+        <li>矩形と矩形の衝突</li>
       </ol>      
     </header>
     <main>
       <article>
-        <h1>点と円の衝突</h1>
+        <h1>矩形と矩形の衝突</h1>
         <div id="graph1"></div>
 
-<p>このページでは点と円の衝突について解説していきます。</p>
-
-<p>円のあたり判定は、判定も簡単で比較的処理も軽いので最もよく使われる判定方法だと思います。</p>
+<p>回転しない矩形と矩形の衝突についてまとめていきます。</p>
 
 <h2>考え方</h2>
 
-<div id="graph2"></div>
+<p>回転しない矩形同士の判定は特に難しい計算は登場しません。</p>
 
-<p class="math">
-  $点A$：円の中心<br>
-  $r$：円の半径
-</p>
+<p>ただ、この時は当たっていない、この時も当たっていない、と当たっていないケースを愚直に判定していきます。</p>
 
-<p>
-  <span class="green">●</span>を動かしてみて下さい。
-</p>
+<p>実際に図で見たほうがわかりやすいと思うので図解していきます。</p>
 
-<p>
-  緑の線について、$点P$ が円の外にあるときは 円の半径 $r$ よりも長くなり、円の中にあるときは $r$ よりも短くなる事がわかると思います。
-</p>
+<div id="graph2_0"></div>
+<p>一方の矩形を $R1$、もう一つの矩形を $R2$ とします。</p>
 
-<p>
-  なので、緑の線が円の半径$r$よりも短ければ、点と円は当たっているとなります。
-</p>
+<h3>$R2$ が $R1$ の左にあってあたってないケース</h3>
 
-<p class="math">
-  緑の線を $\vec{AP}$ とすると<br>
-  $|\vec{AP}| &lt; r$ であれば、点と円が当たっている。
-</p>
+<div id="graph2_1"></div>
+<p>$R2$ の右端 の $x$ 座標が、$R1$ の左端の $x$ 座標より小さければ、これはもう当たっていません。</p>
 
-<h2>$\vec{AP}$ の長さを求める</h2>
+<h3>$R2$ が $R1$ の右にあって、あたってないケース</h3>
+<div id="graph2_2"></div>
 
-<p>
-  $\vec{AP}$ は $点P$ の座標から $点A$ の座標を引き算する事で求められます。
-</p>
+<p>$R2$ の左端 の $x$ 座標が、$R1$ の右端の $x$ 座標より大きければ、これはもう当たっていません。</p>
 
-<p class="math">
-  $\vec{AP} = P - A$
-</p>
+<h3>$R2$ が $R1$ の下にあって、あたってないケース</h3>
 
-<p>そしてベクトルの長さは <a href="../../theorem/pythagorean/">三平方の定理</a>で求める事ができます。</p>
+<div id="graph2_3"></div>
+<p>$R2$ の上端 の $y$ 座標が、$R1$ の下端の $y$ 座標より小さければ、これはもう当たっていません。</p>
 
-<p class="math">
-  $\vec{AP} = (x, y)$ とすると
-  $|\vec{AP}| = \sqrt{x^2 + y^2}$
-</p>
+<h3>$R2$ が $R1$ の上にあって、あたってないケース</h3>
 
-<h2>まとめ</h2>
+<div id="graph2_4"></div>
+<p>$R2$ の下端 の $y$ 座標が、$R1$ の上端の $y$ 座標より大きれば、これはもう当たっていません。</p>
 
-<p>円の半径 $r$ より $\vec{AP}$ の長さが短ければ $点P$ は円に当たっている。</p>
+<h3>上記４パターン以外であれば当たっている</h3>
 
-<p class="math">
-  $|\vec{AP}| &lt; r$<br>
-  $ = \sqrt{x^2 + y^2} &lt; r$　　　：$|\vec{AP}| = \sqrt{x^2 + y^2}$ なので<br>
-  $ = x^2 + y^2 < r^2 \ \ \ $　　　：√を外す
-</p>
+<p>$R2$ が $R1$ の完全に左にあるのか、右にあるのか、下にあるのか、上にあるのか</p>
 
-<p>最後に√を外していますが、√を外さなくても計算上は問題ありません。</p>
-<p>ただコンピューターで平方根を求める処理は重い処理なので、両辺を二乗してルートを外すことで平方根の計算を無くすという方法がよく使われます。</p>
+<p>いずれかの条件に一致した瞬間、矩形同士は衝突していないことになります。</p>
+
+<p>逆に、全ての条件に一致しなかった場合、矩形同士は衝突しています。</p>
+
+<p>条件が多く、ちょっとややこしさはありますが、落ち着いて考えれば難しくないと思います。</p>
 
 <h2>サンプルコード</h2>
 
 <pre><code>/**
-  * 点と円が当たっているかどうか
-  * @param p 点
-  * @param circle 円
+  * 矩形と矩形が当たっているかどうか
+  * @param r1 矩形１
+  * @param r2 矩形２
   */
- function intercect(p:Vector2, circle: Circle)
+ export function isHit(r1:Rect, r2:Rect) 
  {
-   // 円の中心から p に向かうベクトルを v とする
-   const v = Vector2.sub(p, circle.p);
+   // x座標に関する判定
+   if (r2.maxX < r1.minX) return false;
+   if (r1.maxX < r2.minX) return false;
  
-   // v が 円の半径より短ければあたっている。
-   // (ベクトルの長さの二乗で判定する事で処理負荷を下げる)
-   return (v.sqrMagnitude < circle.r * circle.r);
+   // y座標に関する判定
+   if (r2.maxY < r1.minY) return false;
+   if (r1.maxY < r2.minY) return false;
+ 
+   return true;
  }</code></pre>
       </article>
     </main>
