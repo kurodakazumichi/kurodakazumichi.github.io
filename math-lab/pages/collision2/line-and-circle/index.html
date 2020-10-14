@@ -21,11 +21,11 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@ProgPuyan" />
     
-    <script src="../../../assets/js/mathLab.js?v=202010121356"></script>
-    <link rel="stylesheet" href="../../../assets/css/default.css?v=202010121356">
+    <script src="../../../assets/js/mathLab.js?v=202010141325"></script>
+    <link rel="stylesheet" href="../../../assets/css/default.css?v=202010141325">
 
     
-    <script src="../../../venders/somali/somali.min.js?v=202010121356"></script>
+    <script src="../../../venders/somali/somali.min.js?v=202010141325"></script>
     <script src="../../../venders/highlight/highlight.pack.js"></script>
     <link rel="stylesheet" href="../../../venders/highlight/atom-one-dark.css">
 
@@ -43,7 +43,7 @@
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
     </script>    
 
-    <script src="../../../assets/js/props.js?v=202010121356"></script>
+    <script src="../../../assets/js/props.js?v=202010141325"></script>
   </head>
   <body>
     <header>
@@ -126,7 +126,7 @@
 function isHit(line:Line, circle:Circle) 
 {
   // 円の中心と直線の最近傍点 p を求める
-  const p = PointAndLine.getNearestNeighborPoint(circle.p, line);
+  const p = PointAndLine.getNearestPoint(circle.p, line);
  
   // 円の中心から p までの距離を d として
   // d < 円の半径 r だったら当たっている
