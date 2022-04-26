@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ランダムナンバー</title>
+  <style>
+    #number {
+      width: 100vw;
+      height:100vh;
+      text-align: center;
+      line-height: 100vh;
+      font-size:40vh;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="number" onclick="random()">0</div>
+  <script>
+    const MAX = prompt("最大値いくつにする？");
+    const NUM = document.getElementById("number");
+    let counter = 0;
+
+    function random() 
+    {
+      if (0 < counter) return;
+
+      counter = 30;
+      loop();
+    }
+
+    function loop() 
+    {
+      if (counter <= 0) return;
+
+      const num = Math.floor(Math.random() * MAX) + 1;
+      NUM.innerText = num;
+      counter--;
+
+      requestAnimationFrame(loop);
+    }
+
+    
+
+  </script>
+</body>
+</html>

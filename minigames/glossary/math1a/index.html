@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数ⅠA用語集</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>.main-bgcolor { background-color: #32978B; }</style>
+  <script src="../deck.js"></script>
+  <script src="../mathjax.js"></script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>  
+  <script src="words.js"></script>
+</head>
+<body>
+  <div id="game">
+    <h1 class="main-bgcolor">数学Ⅰ・A用語集</h1>
+    <div class="word-wrapper">
+      <div id="word" class="word"></div>
+    </div>
+    
+    <div class="btn-fixed">
+      <a onclick="draw()" class="btn main-bgcolor btn--circle btn--circle-a btn--shadow">DRAW!</a>
+    </div>
+  </div>
+  
+  <script>
+    const deck = new Deck(WORDS);
+    const word = document.getElementById("word");
+
+    function draw() {
+      word.innerHTML = deck.draw();
+      MathJaxTypeset();
+    }
+  </script>
+</body>
+</html>
