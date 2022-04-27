@@ -59,6 +59,14 @@ class Deck
 
     return card;
   }
+
+  /**
+   * 残りのカードから引く可能性のあるカード候補を一枚っ取得
+   * @returns 
+   */
+  getCandidate() {
+    return this.cards[this.random()];
+  }
 }
 
 /**
@@ -68,6 +76,8 @@ class Game {
   constructor(deck) {
     this.deck = deck;
     this.count = 0;
+    this.rouletteFrame = 0;
+    this.currentCard = null;
 
     // dom取得
     this.dom = {
@@ -96,22 +106,30 @@ class Game {
     return (PLAYER_CARD_MAX <= this.count);
   }
 
+  /**
+   * ルーレット中かどうか
+   */
+  get isDuringRoulette() {
+    return (0 < this.rouletteFrame);
+  }
+
   draw() 
   {
     // もうカードがいっぱいなら引かない
     if (this.isFulled) return;
 
+    // ルーレット中は引かない
+    if (this.isDuringRoulette) return;
+
     // 新たにカードを引く
     const card = document.createElement("div");
     card.className = "card";
-    card.innerText = deck.draw();
     this.dom.cards.appendChild(card);
+    this.currentCard = card;
     this.count++;
 
-    // 最大まで引いたらリセットボタンを表示
-    if (this.isFulled) {
-      this.showReset();
-    }
+    this.rouletteFrame = 30;
+    this.roulette();
   }
 
   reset() {
@@ -119,6 +137,22 @@ class Game {
     this.dom.cards.innerHTML = "";
     this.hideReset();
   }
+
+  roulette() 
+  {
+    // ルーレット中でなければ終了
+    if (!this.isDuringRoulette) return;
+
+    this.currentCard.innerText = this.deck.getCandidate();
+    this.rouletteFrame--;
+
+    // 最後のカードを引いてルーレットが終わったタイミングでリセットボタンを表示
+    if (this.isFulled && !this.isDuringRoulette) {
+      this.showReset();
+    }    
+
+    requestAnimationFrame(this.roulette.bind(this));
+  }  
 
   showReset() {
     this.dom.reset.style = "";
