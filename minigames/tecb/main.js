@@ -6,11 +6,11 @@ const PLAYER_CARD_MAX = 4;
  */
 class Deck 
 {
-  constructor() {
+  constructor(cards) {
     this.cards = [];
     this.cursor = 0; // デッキの開始位置
 
-    Cards.map((value) => {
+    cards.map((value) => {
       this.cards.push(value);
     })
   }
@@ -39,15 +39,22 @@ class Deck
   }
 
   /**
+   * デッキを仕切りなおす
+   */
+  resume() {
+    this.cursor = 0;
+  }
+
+  /**
    * ランダムにカードを1枚引く。
    * 引いたカードはthis.cursorが示す位置と内容を交換し、this.cursorを1増やす
    * 結果的に引いたカードは配列の先頭にあつまり、まだ引いていないカードの位置をthis.cursorが示す事になる。
    * this.cursorが配列のサイズを超えたとき、デッキにはカードが残っていない状態になる。
    */
   draw() {
-    // デッキが空の場合はthis.cursorをリセット
+    // デッキが空の場合はthis.cursorを仕切りなおす
     if (this.isEmpty) {
-      this.cursor = 0;
+      this.resume();
     }
 
     const cardIndex = this.random();
@@ -121,6 +128,11 @@ class Game {
     // ルーレット中は引かない
     if (this.isDuringRoulette) return;
 
+    // 一枚目のカードを引くときにデッキの枚数が1回分に見たない場合はデッキを仕切りなおす
+    if (this.count === 0 && deck.count <= PLAYER_CARD_MAX) {
+      deck.resume();
+    }
+
     // 新たにカードを引く
     const card = document.createElement("div");
     card.className = "card";
@@ -146,6 +158,11 @@ class Game {
     this.currentCard.innerText = this.deck.getCandidate();
     this.rouletteFrame--;
 
+    // ルーレット終了時にちゃんとカードを引く
+    if (!this.isDuringRoulette) {
+      this.currentCard.innerText = this.deck.draw();
+    }
+
     // 最後のカードを引いてルーレットが終わったタイミングでリセットボタンを表示
     if (this.isFulled && !this.isDuringRoulette) {
       this.showReset();
@@ -163,5 +180,5 @@ class Game {
   }
 }
 
-const deck = new Deck();
+const deck = new Deck(Cards);
 const game = new Game(deck);
